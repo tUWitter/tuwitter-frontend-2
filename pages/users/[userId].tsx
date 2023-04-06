@@ -3,7 +3,7 @@ import useUser from "@/hooks/useUser";
 import { useRouter } from "next/router";
 import { ClipLoader } from "react-spinners";
 import UserHero from "@/components/users/UserHero";
-import UserBio from "./UserBio";
+import UserBio from "../../components/users/UserBio";
 
 const UserView = () => {
     const router = useRouter();
