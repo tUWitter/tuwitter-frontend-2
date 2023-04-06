@@ -53,7 +53,7 @@ const SidebarTweetButton = () => {
                 font-semibold
                 text-white
                 ">
-                    Tweet
+                    Post
                 </p>
 
             </div>

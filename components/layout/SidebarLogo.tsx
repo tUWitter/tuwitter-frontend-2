@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import {BsTwitter} from 'react-icons/bs'
+import { BiUserVoice } from "react-icons/bi";
 
 const SidebarLogo = () =>{
     const router = useRouter();
@@ -17,7 +17,7 @@ const SidebarLogo = () =>{
         cursor-pointer
         transition
         " >
-            <BsTwitter size={28} color="white" />
+            <BiUserVoice size={28} color="white" />
 
         </div>
 
