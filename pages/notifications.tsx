@@ -1,5 +1,5 @@
-import Header from "@/components/Header";
-import NotificationFeed from "@/components/NotificationFeed";
+import Header from "@/components/layout/Header";
+import NotificationFeed from "@/components/layout/NotificationFeed";
 import { NextPageContext } from "next";
 import { getSession } from "next-auth/react";
 

@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css';
 import Header from '@/components/Header';
 import Form from '@/components/Form';
-import PostFeed from '@/components/posts/PostFeed';
+import PostFeed from '@/components/post/PostFeed';
 
 const inter = Inter({ subsets: ['latin'] })
 

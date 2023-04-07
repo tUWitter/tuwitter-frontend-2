@@ -7,7 +7,7 @@ import useLoginModal from "@/hooks/useLoginModal";
 import useRegisterModal from "@/hooks/useRegisterModal";
 
 import Input from "../Input";
-import Modal from "../Modal";
+import Modal from "./Modal";
 
 const RegisterModal = () => {
   const loginModal = useLoginModal();

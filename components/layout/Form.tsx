@@ -7,7 +7,7 @@ import useRegisterModal from '@/hooks/useRegisterModal';
 import useCurrentUser from '@/hooks/useCurrentUser';
 import usePosts from '@/hooks/usePosts';
 
-import Avatar from './Avatar';
+import Avatar from './user/Avatar';
 import Button from './Button';
 import usePost from '@/hooks/usePost';
 import usePostModal from '@/hooks/usePostModal';

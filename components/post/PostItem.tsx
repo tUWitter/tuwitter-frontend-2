@@ -3,7 +3,7 @@ import useLoginModal from "@/hooks/useLoginModal";
 import { formatDistanceToNowStrict } from "date-fns";
 import { useRouter } from "next/router";
 import { useCallback, useMemo } from "react";
-import Avatar from "../Avatar";
+import Avatar from "../user/Avatar";
 import { AiOutlineHeart, AiFillHeart, AiOutlineMessage } from "react-icons/ai";
 import useLike from "@/hooks/useLike"; 
 

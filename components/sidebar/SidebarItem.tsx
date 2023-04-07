@@ -2,7 +2,7 @@ import useCurrentUser from "@/hooks/useCurrentUser";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
 import { IconType } from "react-icons";
-import LoginModal from "../modals/LoginModal";
+import LoginModal from "../modal/LoginModal";
 import useLoginModal from "@/hooks/useLoginModal";
 import { BsDot } from "react-icons/bs";
 
