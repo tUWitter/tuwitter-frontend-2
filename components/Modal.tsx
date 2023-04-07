@@ -27,7 +27,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, onSubmit, title, body, a
       return;
     }
 
-    onSubmit();
+    onSubmit && onSubmit();
   }, [onSubmit, disabled]);
 
   if (!isOpen) {
