@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useCallback, useMemo } from 'react';
 import { formatDistanceToNowStrict } from 'date-fns';
 
-import Avatar from '../Avatar';
+import Avatar from '../user/Avatar';
 
 interface CommentItemProps {
   data: Record<string, any>;
