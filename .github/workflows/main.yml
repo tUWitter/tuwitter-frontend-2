@@ -13,6 +13,10 @@ jobs:
       # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v5
+        env:
+          DATABASE_URL: ${{secrets.DATABASE_URL}}
+          NEXTAUTH_JWT_SECRET: ${{secrets.NEXTAUTH_JWT_SECRET}}
+          NEXTAUTH_SECRET: ${{secrets.NEXTAUTH_SECRET}}
         with:
           build: npm run build
           start: npm start
