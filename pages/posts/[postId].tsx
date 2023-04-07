@@ -1,5 +1,5 @@
-import Form from "@/components/Form";
-import Header from "@/components/Header";
+import Form from "@/components/layout/Form";
+import Header from "@/components/layout/Header";
 import CommentFeed from "@/components/post/CommentFeed";
 import PostItem from "@/components/post/PostItem";
 import usePost from "@/hooks/usePost";

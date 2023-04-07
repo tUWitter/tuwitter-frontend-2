@@ -1,4 +1,3 @@
-import Button from "@/components/Button";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import useUser from "@/hooks/useUser";
 import { format } from "date-fns";
@@ -6,6 +5,7 @@ import { useMemo } from "react";
 import { BiCalendar } from "react-icons/bi";
 import useEditUserModal from "@/hooks/useEditModal";
 import useFollow from "@/hooks/useFollow";
+import Button from "../layout/Button";
 
 
 interface UserBioProps {

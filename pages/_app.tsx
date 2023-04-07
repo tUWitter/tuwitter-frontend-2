@@ -1,4 +1,3 @@
-import Layout from "@/components/Layout";
 import LoginModal from "@/components/modal/LoginModal";
 import RegisterModal from "@/components/modal/RegisterModal";
 import "@/styles/globals.css";
@@ -7,8 +6,9 @@ import { Toaster } from "react-hot-toast";
 import { SessionProvider } from "next-auth/react";
 import EditModal from "@/components/modal/EditModal";
 import Head from "next/head";
-import Favicon from "@/components/Favicon";
 import PostModal from "@/components/modal/PostModal";
+import Favicon from "@/components/layout/Favicon";
+import Layout from "@/components/layout/Layout";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
