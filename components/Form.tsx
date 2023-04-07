@@ -10,6 +10,8 @@ import usePosts from '@/hooks/usePosts';
 import Avatar from './Avatar';
 import Button from './Button';
 import usePost from '@/hooks/usePost';
+import usePostModal from '@/hooks/usePostModal';
+import useLoading from '@/hooks/useLoading';
 
 interface FormProps {
   placeholder: string;
@@ -20,6 +22,7 @@ interface FormProps {
 const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
+  const postModal = usePostModal();
 
   const { data: currentUser } = useCurrentUser();
   const { mutate: mutatePosts } = usePosts();
@@ -27,7 +30,7 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
 
 
   const [body, setBody] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const {isLoading, setIsLoading} = useLoading();
 
   const onSubmit = useCallback(async () => {
     try {
@@ -41,12 +44,13 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
       setBody('');
       mutatePosts();
       mutatePost();
+      postModal.onClose();
     } catch (error) {
       toast.error('Something went wrong');
     } finally {
       setIsLoading(false);
     }
-  }, [body, isComment, mutatePost, mutatePosts, postId]);
+  }, [body, isComment, mutatePost, mutatePosts, postId, postModal, setIsLoading]);
 
   return (
     <div className="border-b-[1px] border-neutral-800 px-5 py-2">

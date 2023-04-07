@@ -1,15 +1,25 @@
+import useCurrentUser from "@/hooks/useCurrentUser";
 import useLoginModal from "@/hooks/useLoginModal";
+import usePostModal from "@/hooks/usePostModal";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
 import { FaFeather } from "react-icons/fa";
 
-const SidebarTweetButton = () => {
+const SidebarPostButton = () => {
     const router = useRouter();
     const loginModal = useLoginModal();
+    const { data: currentUser } = useCurrentUser();
+    const postModal = usePostModal();
 
     const onClick = useCallback(() => {
-        loginModal.onOpen();
-    }, [loginModal]);
+        if (!currentUser) {
+            return loginModal.onOpen();
+          }
+
+        postModal.onOpen();
+
+
+    }, [currentUser, loginModal, postModal]);
     
     return (
         <div onClick={onClick}>
@@ -53,7 +63,7 @@ const SidebarTweetButton = () => {
                 font-semibold
                 text-white
                 ">
-                    Tweet
+                    Post
                 </p>
 
             </div>
@@ -62,4 +72,4 @@ const SidebarTweetButton = () => {
     );
 }
 
-export default SidebarTweetButton;
+export default SidebarPostButton;
