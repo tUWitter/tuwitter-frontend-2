@@ -18,12 +18,9 @@ jobs:
           NEXTAUTH_JWT_SECRET: ${{secrets.NEXTAUTH_JWT_SECRET}}
           NEXTAUTH_SECRET: ${{secrets.NEXTAUTH_SECRET}}
         with:
-          build: npm run build
-          start: npm start
+          start: npm run dev:instrumented
           wait-on: 'http://localhost:3000'
           browser: chrome
-      
-      - run: npm run dev:instrumented
       - run: npm run cypress:run
       - run: npm run coverage
       - name: Upload coverage to Codecov
