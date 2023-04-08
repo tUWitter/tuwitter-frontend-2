@@ -22,7 +22,7 @@ jobs:
           start: npm start
           wait-on: 'http://localhost:3000'
           # generate coverage report
-          command: npm run cypress:run
+      - run: npm run cypress:run
       # Upload coverage reports to Codecov
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
