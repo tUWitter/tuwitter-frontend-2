@@ -17,12 +17,14 @@ jobs:
           DATABASE_URL: ${{secrets.DATABASE_URL}}
           NEXTAUTH_JWT_SECRET: ${{secrets.NEXTAUTH_JWT_SECRET}}
           NEXTAUTH_SECRET: ${{secrets.NEXTAUTH_SECRET}}
+          INSTRUMENT_CODE: 1
         with:
           build: npm run build
           start: npm start
           wait-on: 'http://localhost:3000'
-          # generate coverage report
-      - run: npm run cypress:run
+      - name: Generate coverage report
+        run: npm run cypress:run
+
       # Upload coverage reports to Codecov
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
