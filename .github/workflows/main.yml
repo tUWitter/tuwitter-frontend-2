@@ -17,12 +17,12 @@ jobs:
           DATABASE_URL: ${{secrets.DATABASE_URL}}
           NEXTAUTH_JWT_SECRET: ${{secrets.NEXTAUTH_JWT_SECRET}}
           NEXTAUTH_SECRET: ${{secrets.NEXTAUTH_SECRET}}
-          INSTRUMENT_CODE: 1
         with:
           build: npm run build
           start: npm start
           wait-on: 'http://localhost:3000'
           browser: chrome
+      
       - run: npm dev:instrumented
       - run: npm run cypress:run
       - run: npm run coverage
