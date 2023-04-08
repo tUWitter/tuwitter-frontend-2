@@ -10,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     const { currentUser } = await serverAuth(req, res);
-    const { body } = req.body;
+    const { body, isAnonymous } = req.body;
     const { postId } = req.query;
 
     if (!postId || typeof postId !== 'string') {
@@ -20,6 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const comment = await prisma.comment.create({
       data: {
         body,
+        isAnonymous,
         userId: currentUser.id,
         postId
       }
@@ -33,11 +34,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
       });
 
+      let body;
+      if (isAnonymous) {
+        body = `${currentUser?.codename} commented your post`;
+      } else {
+        body = `${currentUser?.name} commented your post`;
+      }
+
       if (post?.userId ) {
         await prisma.notification.create({
           data: {
             userId: post.userId,
-            body: `${currentUser?.name} commented your post`,
+            body: body,
           }
         });
 

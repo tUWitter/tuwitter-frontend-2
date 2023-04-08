@@ -22,7 +22,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         user: true,
         comments: {
           include: {
-            user: true
+            user: true,
           },
           orderBy: {
             createdAt: 'desc'
