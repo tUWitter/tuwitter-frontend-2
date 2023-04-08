@@ -26,8 +26,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
-      - run: npm run build 
-      - run: npm start &
+      - name: start server
+        run: npm run dev:instrumented &
+             sleep 10 &&
+             curl http://localhost:3000 &&
       - run: npm run cypress:run
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
