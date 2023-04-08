@@ -9,7 +9,11 @@ on:
 jobs:
   build:
     environment: CI
-
+    env:
+      DATABASE_URL: ${{secrets.DATABASE_URL}}
+      NEXTAUTH_JWT_SECRET: ${{secrets.NEXTAUTH_JWT_SECRET}}
+      NEXTAUTH_SECRET: ${{secrets.NEXTAUTH_SECRET}}
+      INSTRUMENT_CODE: 1
     runs-on: ubuntu-latest
 
     strategy:
@@ -22,8 +26,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
-      - run: npm run build --if-present
-      - run: npm start
+      - run: npm run build 
+      - run: npm start &
       - run: npm run cypress:run
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
