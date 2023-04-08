@@ -2,24 +2,32 @@ name: Cypress Tests
 
 on: push
 
-
-
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [19.7.0]
-    environment: CI
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       # Install NPM dependencies, cache them correctly
-      - name: Set up Node
-        uses: actions/setup-node@v3
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
+        env:
+          DATABASE_URL: ${{secrets.DATABASE_URL}}
+          NEXTAUTH_JWT_SECRET: ${{secrets.NEXTAUTH_JWT_SECRET}}
+          NEXTAUTH_SECRET: ${{secrets.NEXTAUTH_SECRET}}
         with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm install
-      - run: npm run dev:instrumented
-      - run: npm run cypress:run
-      - run: npm run coverage
+          build: npm run build
+          start: npm start
+          # generate coverage report
+          command: npm run cypress:run
+      # Upload coverage reports to Codecov
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{secrets.CODECOV_TOKEN}}
+          file: ./coverage/lcov.info
+          flags: cypress
+          name: codecov-umbrella
+          fail_ci_if_error: true
+           
