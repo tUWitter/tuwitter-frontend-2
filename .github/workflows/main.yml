@@ -23,7 +23,7 @@ jobs:
           wait-on: 'http://localhost:3000'
           browser: chrome
       
-      - run: npm dev:instrumented
+      - run: npm run dev:instrumented
       - run: npm run cypress:run
       - run: npm run coverage
       - name: Upload coverage to Codecov
