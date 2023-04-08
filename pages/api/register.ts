@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import bcrypt from 'bcrypt';
-
+import { uniqueNamesGenerator, Config, names, starWars, animals } from 'unique-names-generator';
 import prisma from '@/libs/prismadb';
 
 export default async function handler(
@@ -14,12 +14,19 @@ export default async function handler(
     try{
         const{email, username, name, password} = req.body;
         const hashedPassword = await bcrypt.hash(password, 12);
+        const config : Config = {
+            dictionaries: [names, starWars, animals],
+            length: 1,
+        };
+ 
+        const codename: string = "Anonymous "  + uniqueNamesGenerator(config);
 
         const user = await prisma.user.create({
             data:{
                 email,
                 username,
                 name,
+                codename,
                 hashedPassword
             }
         });

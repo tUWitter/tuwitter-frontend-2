@@ -8,20 +8,30 @@ interface AvatarProps {
     userId: string;
     isLarge?: boolean;
     hasBorder?: boolean;
+    isAnonymous?: boolean;
 }
 
-const Avatar: React.FC<AvatarProps> = ({ userId, isLarge, hasBorder }) => {
+const Avatar: React.FC<AvatarProps> = ({ userId, isLarge, hasBorder , isAnonymous}) => {
     const router = useRouter();
 
     const { data: fetchedUser } = useUser(userId);
 
     const onClick = useCallback((event: any) => {
+        if (isAnonymous) {
+            return;
+        }
         event.stopPropagation();
-
         const url = `/users/${userId}`;
 
         router.push(url);
-    }, [router, userId]);
+    }, [isAnonymous, router, userId]);
+
+    let avatarImageUrl;
+    if (isAnonymous) {
+        avatarImageUrl = '/images/anonymous-avatar.png';
+    } else{
+        avatarImageUrl = fetchedUser?.profileImage || '/images/default-avatar.jpeg';
+    }
 
     return (
         <div
@@ -44,7 +54,7 @@ const Avatar: React.FC<AvatarProps> = ({ userId, isLarge, hasBorder }) => {
                 }}
                 alt="Avatar"
                 onClick={onClick}
-                src={fetchedUser?.profileImage || '/images/default-avatar.jpeg'}
+                src={avatarImageUrl}
             />
         </div>
     );

@@ -14,6 +14,7 @@ model User {
   id              String @id @default(auto()) @map("_id") @db.ObjectId
   name            String?
   username        String?   @unique
+  codename        String?   @unique
   bio             String?
   email           String?   @unique
   emailVerified   DateTime?
@@ -39,6 +40,7 @@ model Post {
   userId             String @db.ObjectId
   likedIds           String[] @db.ObjectId
   image              String?
+ isAnonymous         Boolean?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -52,6 +54,7 @@ model Comment {
   updatedAt          DateTime @updatedAt
   userId             String @db.ObjectId
   postId             String @db.ObjectId
+  isAnonymous         Boolean?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
@@ -61,6 +64,7 @@ model Notification {
   id                 String @id @default(auto()) @map("_id") @db.ObjectId
   body               String
   userId             String @db.ObjectId
+  postID             String @db.ObjectId
   createdAt          DateTime @default(now())
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)

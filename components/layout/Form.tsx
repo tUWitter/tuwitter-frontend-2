@@ -6,6 +6,7 @@ import useLoginModal from '@/hooks/useLoginModal';
 import useRegisterModal from '@/hooks/useRegisterModal';
 import useCurrentUser from '@/hooks/useCurrentUser';
 import usePosts from '@/hooks/usePosts';
+import CheckBox from "@mui/material/Checkbox";
 
 
 import Button from './Button';
@@ -13,6 +14,7 @@ import usePost from '@/hooks/usePost';
 import usePostModal from '@/hooks/usePostModal';
 import useLoading from '@/hooks/useLoading';
 import Avatar from '../user/Avatar';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 interface FormProps {
   placeholder: string;
@@ -28,6 +30,10 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
   const { data: currentUser } = useCurrentUser();
   const { mutate: mutatePosts } = usePosts();
   const { mutate : mutatePost } = usePost(postId as string);
+  const [isAnonymous, setIsAnonymous] = useState(false);
+  const handleAnonymousCheck= (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIsAnonymous(event.target.checked);
+  };
 
 
   const [body, setBody] = useState('');
@@ -39,7 +45,7 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
 
       const url = isComment? `/api/comments?postId=${postId}` : '/api/posts';
 
-      await axios.post(url, { body });
+      await axios.post(url, { body, isAnonymous });
 
       toast.success('Tweet created');
       setBody('');
@@ -51,7 +57,7 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
     } finally {
       setIsLoading(false);
     }
-  }, [body, isComment, mutatePost, mutatePosts, postId, postModal, setIsLoading]);
+  }, [body, isAnonymous, isComment, mutatePost, mutatePosts, postId, postModal, setIsLoading]);
 
   return (
     <div className="border-b-[1px] border-neutral-800 px-5 py-2">
@@ -90,7 +96,21 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
                 transition"
             />
             <div className="mt-4 flex flex-row justify-end">
-              <Button disabled={isLoading || !body} onClick={onSubmit} label="Tweet" />
+              <FormControlLabel
+              className="text-neutral-500 text-xs font-semibold"
+               label="Anonymous"
+               value="end"
+                control={<CheckBox
+                   sx={{
+                    color: "#153D7C",
+                   }}
+                  checked={isAnonymous} 
+                  disabled={isLoading || !body} 
+                  onChange={handleAnonymousCheck} 
+                />}
+              />
+              <Button disabled={isLoading || !body} onClick={onSubmit} label="Post" />
+              
             </div>
           </div>
         </div>
