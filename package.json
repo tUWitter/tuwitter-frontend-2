@@ -8,23 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "cypress:open": "cypress open",
-    "cypress:run": "nyc cypress run",
-    "coverage": "codecov",
     "predev:instrumented": "rm -rf .nyc_output coverage .next",
     "dev:instrumented": "INSTRUMENT_CODE=1 next dev"
-  },
-  "nyc": {
-    "extension": [
-      ".ts",
-      ".tsx"
-    ],
-    "exclude": [
-      "**/*.d.ts"
-    ],
-    "reporter": [
-      "lcov"
-    ],
-    "all": true  
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.5",

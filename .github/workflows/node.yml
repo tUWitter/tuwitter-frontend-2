@@ -27,16 +27,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - name: start server
-        run: npm run dev:instrumented &
+        run: npm run start &
              sleep 10 &&
              curl http://localhost:3000 
       - run: npm run cypress:run
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
-        with:
-          token: ${{secrets.CODECOV_TOKEN}}
-          file: ./coverage/lcov.info
-          flags: cypress
-          name: codecov-umbrella
-          fail_ci_if_error: true
          
