@@ -20,7 +20,7 @@ jobs:
           DATABASE_URL: ${{secrets.DATABASE_URL}}
           NEXTAUTH_JWT_SECRET: ${{secrets.NEXTAUTH_JWT_SECRET}}
           NEXTAUTH_SECRET: ${{secrets.NEXTAUTH_SECRET}}
-        uses: stefanoeb/jest-action@1.0.3
+        run: npm run test:ci
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:

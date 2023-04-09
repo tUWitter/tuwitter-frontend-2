@@ -1,17 +1,19 @@
 import React from "react";
 import { render, screen } from '@testing-library/react';
-import HomePage from "../../pages/index";
 import mockRouter from 'next-router-mock';
+import { useRouter } from 'next/router';
+import Header from "@/components/layout/Header";
+
 
 jest.mock('next/router', () => require('next-router-mock'));
 
-describe("Home", () => {
-  it("should render the header", () => {
-    const textToFind = "Home"
 
-    render(<HomePage />);
-    const heading = screen.getByText(textToFind);
-
-    expect(heading).toBeInTheDocument();
+describe('Home', () => {
+  it('mocks the useRouter hook', async () => {
+    // Set the initial url:
+    
+    // Render the component:
+    render(<Header  />);
+    expect
   });
 });

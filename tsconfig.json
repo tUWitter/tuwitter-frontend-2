@@ -18,6 +18,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "cypress/plugins/index.js", "cypress/support/index.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "cypress/plugins/index.js", "cypress/support/index.js", "__tests__/pages/index.test.js", "__tests__/snapshot.js"],
   "exclude": ["node_modules"]
 }
