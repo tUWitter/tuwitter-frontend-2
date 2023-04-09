@@ -1,5 +1,5 @@
 [![Tests](https://github.com/tUWitter/tuwitter2/actions/workflows/test.yml/badge.svg)](https://github.com/tUWitter/tuwitter2/actions/workflows/test.yml)
-
+[![codecov](https://codecov.io/gh/tUWitter/tuwitter2/branch/main/graph/badge.svg?token=Op4aZ1T6hM)](https://codecov.io/gh/tUWitter/tuwitter2)
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## TODO  change the readme file
